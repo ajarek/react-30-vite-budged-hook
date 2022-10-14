@@ -1,31 +1,33 @@
 export function TableRows({ rowsData, deleteTableRows, handleChange }) {
   return rowsData.map((data, index) => {
-    const { Date, Description, Amount } = data
+    const { date, description, option,  amount } = data
+    
     return (
       <tr key={index}>
         <td>
           <input
             type='date'
-            value={Date}
+            value={date}
             onChange={(event) => handleChange(index, event)}
-            name='Date'
+            name='date'
             className='form-control'
           />
         </td>
         <td>
           <input
             type='text'
-            value={Description}
+            value={description}
             onChange={(event) => handleChange(index, event)}
-            name='Description'
+            name='description'
             className='form-control'
           />{' '}
         </td>
         <td>
           <select
-            name='Type'
+            name='option'
+            value ={option}
             onChange={(event) => handleChange(index, event)}
-            className={'form-select'}
+            className={'form-select'}     
           >
             <option value='Expense'>Expense</option>
             <option value='Income'>Income</option>
@@ -34,9 +36,9 @@ export function TableRows({ rowsData, deleteTableRows, handleChange }) {
         <td>
           <input
             type='number'
-            value={Amount}
+            value={amount}
             onChange={(event) => handleChange(index, event)}
-            name='Amount'
+            name='amount'
             className='form-control'
           />{' '}
         </td>

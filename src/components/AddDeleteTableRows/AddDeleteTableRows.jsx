@@ -1,18 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TableRows from '../TableRows/TableRows'
 import classes from './styles.module.css'
 export function AddDeleteTableRows() {
   const [rowsData, setRowsData] = useState([])
+  const [totalBalance, setTotalBalance]=useState(0)
 
   const addTableRows = () => {
     const rowsInput = {
-      Date: new Date(),
-      Description: '',
-      Select: '',
-      Amount: '',
-    }
+      date: '',
+      description: '',
+      option:'Expense',
+      amount: '',
+    } 
     setRowsData([...rowsData, rowsInput])
   }
+  
+    const total=rowsData?.reduce((acc,item)=>acc+Number(item.amount)
+    ,0)
+    useEffect(()=>{
+      setTotalBalance(total)
+
+    })
+  
+  
+
   const deleteTableRows = (index) => {
     const rows = [...rowsData]
     rows.splice(index, 1)
@@ -57,7 +68,7 @@ export function AddDeleteTableRows() {
         </div>
         <div className='col-sm-4'></div>
         <h4>
-          Total: <span>0</span>
+          Total: <span>{totalBalance}</span>
         </h4>
       </div>
     </div>
